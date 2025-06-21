@@ -1,8 +1,8 @@
 ---
 title: "7-Day Wild Atlantic Way Itinerary"
-pubDate:
+pubDate: 2025-01-11
 author: "Irish Travel Guide"
-image: "/images/wild-atlantic-way.jpg"
+image: "wild-atlantic-way-route-1.jpg"
 tags: ["Wild Atlantic Way", "Road Trip", "West Coast", "Itinerary"]
 slug: "wild-atlantic-way-itinerary"
 ---
