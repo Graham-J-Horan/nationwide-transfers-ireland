@@ -1,6 +1,6 @@
 ---
 title: "Why Every Irish Taxi Should Accept Contactless Payments"
-pubDate:
+pubDate: 2025-04-20
 author: "Irish Transport Pro"
 image: "contactless-payments.jpg"
 tags: ["Cashless", "Card Readers", "SumUp", "Transaction Fees"]
