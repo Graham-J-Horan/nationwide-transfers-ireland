@@ -2,7 +2,6 @@
 // src/pages/thanks.astro
 import MainLayout from "../layouts/MainLayout.astro";
 import ProgressBar from "../components/ProgressBar.astro";
-//const redirectUrl = Astro.site ? new URL(Astro.site).origin : "/";
 ---
 
 <MainLayout>
@@ -31,18 +30,7 @@ import ProgressBar from "../components/ProgressBar.astro";
       <p class="text-gray-600 mb-6">
         Thank you for contacting us. We'll get back to you shortly.
       </p>
-
       <ProgressBar />
-
-      <!-- Redirect Script (place right after progress bar) -->
-
-      <!-- Manual Redirect Button 
-      <a
-        href={redirectUrl}
-        class="inline-block px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors"
-      >
-        Return Home Now
-      </a>-->
     </div>
   </main>
 </MainLayout>
