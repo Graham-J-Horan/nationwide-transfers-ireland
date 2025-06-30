@@ -1,12 +1,11 @@
 ---
 import { Image } from "astro:assets";
-import logo from "../images/pcs_main.jpg";
+import logo from "../images/logo.png";
 ---
 
-<nav style="background-color: #041233; color: #7D7C92;
-  ">
+<nav class="bg-gray-900 text-white">
   <div
-    class="w-full flex items-center justify-between px-4 py-3 mx-auto max-w-screen-xl min-h-[64px] sm:px-6 lg:px-8"
+    class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
   >
     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
       <Image
@@ -43,10 +42,10 @@ import logo from "../images/pcs_main.jpg";
           d="M1 1h15M1 7h15M1 13h15"></path>
       </svg>
     </button>
-
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-      <!-- <ul class="ml-10 flex items-baseline space-x-4"> -->
-      <ul class="flex items-baseline space-x-4">
+      <ul
+        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 text-white rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0"
+      >
         <li>
           <a
             href="/"
@@ -63,16 +62,16 @@ import logo from "../images/pcs_main.jpg";
         </li>
         <li>
           <a
-            href="/contact"
+            href="/pricing"
             class="block py-2 px-3 text-white rounded md:p-0 hover:text-indigo-400"
-            >Contact</a
+            >Pricing</a
           >
         </li>
         <li>
           <a
-            href="/pricing"
+            href="/contact"
             class="block py-2 px-3 text-white rounded md:p-0 hover:text-indigo-400"
-            >Pricing</a
+            >Contact</a
           >
         </li>
         <li>
@@ -82,14 +81,6 @@ import logo from "../images/pcs_main.jpg";
             >Blog</a
           >
         </li>
-        <!-- <li>
-          <a
-            href="/mockpage"
-            class="block py-2 px-3 text-white rounded md:p-0 hover:text-indigo-400"
-            >Mockpage</a
-          >
-        </li> -->
-        <li></li>
       </ul>
     </div>
   </div>
