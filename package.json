@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^8.2.0",
+    "@fontsource/poppins": "^5.2.6",
     "@tailwindcss/vite": "^4.1.10",
     "astro": "^5.9.3"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
     "tailwindcss": "^4.1.10"
   }
 }

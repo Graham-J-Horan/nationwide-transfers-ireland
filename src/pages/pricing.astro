@@ -1,7 +1,322 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+
+//   {
+//   className?: string;
+// }
+
+const { className = "" } = Astro.props;
+
+// Pricing tier data
+const pricingTiers = [
+  {
+    name: "Silver",
+    price: "€50",
+    currency: "Euro",
+    features: [
+      "Punctual Service – 15-minute pre-booking arrival guarantee",
+      "Basic Amenities – Bottled water, phone chargers, free WiFi",
+      "Flight Tracking – Automatic adjustments for delays (airport transfers)",
+      "Local Knowledge – Driver familiar with major business hubs",
+      "Discreet Service – Professional, minimal interaction unless initiated",
+      "Standard Sanitization – Post-trip cleaning with disinfectants",
+    ],
+    buttonText: "Per Hour",
+    featured: false,
+    colorScheme: "silver",
+  },
+  {
+    name: "Gold",
+    price: "€80",
+    currency: "euro",
+    features: [
+      "Premium Meet & Greet – Personalized signage at arrivals",
+      "Luxury Amenities – Champagne, snacks, heated seats, noise-canceling cabins",
+      "Multi-Stop Flexibility – Up to 3 stops included (e.g., hotel → meeting → dinner)",
+      "Bilingual Drivers – Available on request for international clients",
+      "Enhanced Hygiene – HEPA air filters + UV sanitization between rides",
+      "24/7 Priority Booking – Dedicated phone line for last-minute requests",
+    ],
+    buttonText: "Per Hour",
+    featured: true,
+    colorScheme: "gold",
+  },
+  {
+    name: "Platinum",
+    price: "€120",
+    currency: "euro",
+    features: [
+      "White-Glove Service – Door-to-door umbrella escort, luggage handling",
+      "Customized Routes – Scenic or low-profile paths per client preference",
+      "On-Demand Concierge – Restaurant reservations, event tickets arranged",
+      "Advanced Security – Discreet armored options, privacy partitions",
+      "Global Flight Coordination – International pickup/drop-off logistics managed",
+      "Dedicated Chauffeur – Same driver for all bookings (familiarity/trust)",
+    ],
+    buttonText: "Per Hour",
+    featured: false,
+    colorScheme: "platinum",
+  },
+];
 ---
 
 <MainLayout>
-  <h1>Pricing Page</h1>
+  <section class={`pricing-section ${className}`}>
+    <div class="pricing-container">
+      {
+        pricingTiers.map((tier) => (
+          <div
+            class={`pricing-card ${tier.colorScheme} ${tier.featured ? "featured" : ""}`}
+            role="article"
+            aria-label={`${tier.name} pricing tier`}
+          >
+            <div class="card-header">
+              <h3 class="tier-name">{tier.name}</h3>
+              <div class="tier-underline" />
+              {tier.featured && (
+                <div class="featured-badge" aria-label="Most popular" />
+              )}
+            </div>
+
+            <div class="features-list">
+              {tier.features.map((feature) => (
+                <div class="feature-item">
+                  <span class="checkmark" aria-hidden="true">
+                    ✓
+                  </span>
+                  <span class="feature-text">{feature}</span>
+                </div>
+              ))}
+            </div>
+
+            <button
+              class="cta-button"
+              type="button"
+              aria-label={`Select ${tier.name} plan`}
+            >
+              {tier.price && `${tier.price} `}
+              {tier.buttonText}
+            </button>
+          </div>
+        ))
+      }
+    </div>
+  </section>
 </MainLayout>
+
+<style>
+  .pricing-section {
+    background: black;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pricing-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    padding: 2rem; /* Move padding here */
+    box-sizing: border-box;
+  }
+
+  .pricing-card {
+    background: #f5f5f5;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Color schemes */
+  .pricing-card.silver {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  }
+
+  .pricing-card.gold {
+    background: linear-gradient(135deg, #fff8dc 0%, #f0d000 100%);
+    border: 2px solid #ffd700;
+  }
+
+  .pricing-card.gold .featured-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(
+      circle,
+      rgba(255, 215, 0, 0.3) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+  }
+
+  .pricing-card.platinum {
+    background: linear-gradient(135deg, #f1f3f4 0%, #d2d7db 100%);
+  }
+
+  .card-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .tier-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c2c2c;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .tier-underline {
+    width: 60px;
+    height: 2px;
+    background: #2c2c2c;
+    margin: 0 auto;
+  }
+
+  .features-list {
+    margin-bottom: 2rem;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  .feature-item:not(:last-child) {
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+  }
+
+  .checkmark {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background: #2c2c2c;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-top: 0.1rem;
+  }
+
+  .feature-text {
+    font-size: 0.9rem;
+    color: #4a4a4a;
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .cta-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: #2c2c2c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .cta-button:hover {
+    background: #1a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .cta-button:active {
+    transform: translateY(0);
+  }
+
+  .cta-button:focus {
+    outline: 2px solid #007acc;
+    outline-offset: 2px;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .pricing-section {
+      padding: 1rem;
+    }
+
+    .pricing-container {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .pricing-card {
+      padding: 1.5rem;
+    }
+
+    .tier-name {
+      font-size: 1.75rem;
+    }
+  }
+
+  /* Featured card enhancement */
+  .pricing-card.featured {
+    transform: scale(1.05);
+    z-index: 2;
+  }
+
+  .pricing-card.featured:hover {
+    transform: scale(1.05) translateY(-4px);
+  }
+
+  @media (max-width: 768px) {
+    .pricing-card.featured {
+      transform: none;
+    }
+
+    .pricing-card.featured:hover {
+      transform: translateY(-4px);
+    }
+  }
+
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    .pricing-card,
+    .cta-button {
+      transition: none;
+    }
+
+    .pricing-card:hover,
+    .pricing-card.featured {
+      transform: none;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .pricing-card {
+      border: 2px solid;
+    }
+
+    .feature-text {
+      color: #000;
+    }
+  }
+</style>

@@ -1,6 +1,36 @@
-@import "tailwindcss";
+@tailwind utilities;
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-/>;
+/* src/styles/global.css */
+
+/* Reset all fonts to Poppins 
+* {
+  font-family: "Poppins", sans-serif !important;
+}*/
+
+/* Or be more specific 
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div,
+a,
+button,
+input,
+textarea,
+select {
+  font-family: "Poppins", sans-serif !important;
+}
+*/
+/* Remove system-ui inheritance 
+body {
+  font-family: "Poppins", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*/

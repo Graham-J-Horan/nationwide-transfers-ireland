@@ -12,27 +12,34 @@ const tags: string[] = allBlogArticles.flatMap(
 const uniqueTags: string[] = [...new Set(tags)];
 ---
 
-<footer class="bg-indigo-900 text-white">
-  <div class="container mx-auto mt-10 max-w-screen-xl px-8">
-    <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
-      <div class="mt-10">
+<footer style="background-color: #041233; color: #7D7C92;">
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="space-y-4">
         <h3 class="text-xl font-semibold mb-4">About</h3>
         <p class="text-white text-sm">
-          TechPeople is a blog for tech enthusiasts. We publish articles,
-          stories and tutorials about the latest technology trends and
-          advancements.
+          Ireland’s definitive chauffeur hub - luxury service insights, fleet
+          details, booking strategies, and industry trends for professionals and
+          clients
         </p>
       </div>
-      <div class="mt-10">
+      <div class="space-y-4">
         <h3 class="text-xl font-semibold mb-4">Categories</h3>
         <ul class="text-white text-sm">
           {
-            uniqueTags.map((tag) => (
+            uniqueTags.slice(0, 3).map((tag) => (
               <li class="mb-2">
                 <a href={"/articles/tag/" + tag}>#{capitalize(tag)}</a>
               </li>
             ))
           }
+        </ul>
+      </div>
+      <div class="space-y-4">
+        <h3 class="text-xl font-semibold mb-4">Contact</h3>
+        <ul class="text-white text-sm">
+          <li>Phone: 087-179 9124</li>
+          <li>Email: mark.horan@outlook.ie</li>
         </ul>
       </div>
     </div>

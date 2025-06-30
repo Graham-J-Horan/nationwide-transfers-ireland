@@ -1,0 +1,175 @@
+---
+// src/components/Navbar.astro
+
+interface NavItem {
+  name: string;
+  href: string;
+  current?: boolean;
+}
+
+interface Props {
+  currentPage?: string;
+}
+
+const { currentPage = "/" } = Astro.props;
+
+const navItems: NavItem[] = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Portfolio", href: "/portfolio" },
+  { name: "Contact", href: "/contact" },
+];
+
+// Set current page based on URL
+const itemsWithCurrent = navItems.map((item) => ({
+  ...item,
+  current:
+    item.href === currentPage ||
+    (currentPage.startsWith(item.href) && item.href !== "/"),
+}));
+---
+
+<header class="bg-white shadow-sm">
+  <nav
+    class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+    aria-label="Main navigation"
+  >
+    <div class="flex h-16 items-center justify-between">
+      <!-- Logo or site name -->
+      <div class="flex-shrink-0">
+        <a href="/" class="font-bold text-gray-900 text-xl"> Your Logo </a>
+      </div>
+
+      <!-- Desktop navigation (hidden on mobile) -->
+      <div class="hidden md:block">
+        <ul class="flex items-center lg:justify-center space-x-8">
+          {
+            itemsWithCurrent.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class={`${
+                    item.current
+                      ? "text-indigo-600 border-b-2 border-indigo-600"
+                      : "text-gray-700 hover:text-indigo-600"
+                  } px-3 py-2 text-sm font-medium transition-colors duration-200`}
+                  aria-current={item.current ? "page" : undefined}
+                >
+                  {item.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Mobile menu button (hidden on desktop) -->
+      <div class="md:hidden">
+        <button
+          type="button"
+          class="mobile-menu-button inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-colors duration-200"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <!-- Hamburger icon -->
+          <svg
+            class="hamburger-icon block h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <!-- Close icon -->
+          <svg
+            class="close-icon hidden h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu (hidden by default) -->
+    <div class="mobile-menu hidden md:hidden" id="mobile-menu">
+      <ul class="space-y-1 px-2 pb-3 pt-2">
+        {
+          itemsWithCurrent.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class={`${
+                  item.current
+                    ? "bg-indigo-50 text-indigo-700 border-l-4 border-indigo-600"
+                    : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                } block rounded-md px-3 py-2 pl-6 text-base font-medium transition-colors duration-200`}
+                aria-current={item.current ? "page" : undefined}
+              >
+                {item.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle functionality
+  document.addEventListener("DOMContentLoaded", () => {
+    const mobileMenuButton = document.querySelector(".mobile-menu-button");
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const hamburgerIcon = document.querySelector(".hamburger-icon");
+    const closeIcon = document.querySelector(".close-icon");
+
+    if (mobileMenuButton && mobileMenu && hamburgerIcon && closeIcon) {
+      mobileMenuButton.addEventListener("click", () => {
+        const isOpen = !mobileMenu.classList.contains("hidden");
+
+        if (isOpen) {
+          // Close menu
+          mobileMenu.classList.add("hidden");
+          hamburgerIcon.classList.remove("hidden");
+          closeIcon.classList.add("hidden");
+          mobileMenuButton.setAttribute("aria-expanded", "false");
+        } else {
+          // Open menu
+          mobileMenu.classList.remove("hidden");
+          hamburgerIcon.classList.add("hidden");
+          closeIcon.classList.remove("hidden");
+          mobileMenuButton.setAttribute("aria-expanded", "true");
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  /* Add smooth transitions for mobile menu */
+  .mobile-menu {
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Optional: Add active state styling */
+  .mobile-menu-button:active {
+    transform: scale(0.95);
+  }
+</style>

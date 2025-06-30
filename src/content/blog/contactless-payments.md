@@ -9,10 +9,13 @@ slug: "contactless-payments-taxi"
 
 **78% of passengers** prefer card payments. Compare options:
 
-| **Provider** | **Fee** | **Best For**        |
-| ------------ | ------- | ------------------- |
-| SumUp        | 1.69%   | Small-scale drivers |
-| Square       | 1.75%   | Fleet operators     |
-| FreeNow Card | 1.5%\*  | App-based drivers   |
+| **Provider**               |                           **Fee**                            |        **Best For** |
+| :------------------------- | :----------------------------------------------------------: | ------------------: |
+| SumUp                      | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.69% &nbsp;&nbsp;&nbsp;&nbsp; | Small-scale drivers |
+| Square                     |                            1.75%                             |     Fleet operators |
+| FreeNow Card &nbsp; &nbsp; |                            1.5%\*                            |   App-based drivers |
+
+<!-- <table style="padding: 200px;">
+</table> -->
 
 _\*When booked through FreeNow_
