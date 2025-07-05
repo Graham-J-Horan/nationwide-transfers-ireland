@@ -74,11 +74,15 @@ const { Content } = await entry.render();
         }
       </div>
 
-      <img
-        src={"/images/" + entry.data.image}
-        alt="Article Image"
-        class="w-full h-screen object-cover rounded-xl my-6 py-4"
-      />
+      <div class="w-full aspect-[16/9] overflow-hidden rounded-xl my-6">
+        <img
+          src={"/images/" + entry.data.image}
+          alt="Article Image"
+          class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
       <Content />
     </article>
   </div>
