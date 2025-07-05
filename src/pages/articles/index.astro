@@ -32,7 +32,7 @@ const articlesForPage: CollectionEntry<"blog">[] = allBlogArticles.slice(
   <SearchForm />
   <br />
 
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 py-2">
     {articlesForPage.map((article) => <ArticleCard article={article} />)}
   </div>
 
